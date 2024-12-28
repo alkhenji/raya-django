@@ -1,0 +1,56 @@
+# Arabic translations
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgid "Raya Project"
+msgstr "مشروع ريا"
+
+msgid "Raya"
+msgstr "ريا"
+
+msgid "Deals"
+msgstr "الصفقات"
+
+msgid "Startups"
+msgstr "الشركات الناشئة"
+
+msgid "Investors"
+msgstr "المستثمرون"
+
+msgid "Dashboard"
+msgstr "لوحة التحكم"
+
+msgid "Language"
+msgstr "اللغة"
+
+msgid "Logout"
+msgstr "تسجيل الخروج"
+
+msgid "Menu"
+msgstr "القائمة"
+
+msgid "Login"
+msgstr "تسجيل الدخول"
+
+msgid "Raya Project. All rights reserved."
+msgstr "مشروع ريا. جميع الحقوق محفوظة."
+
+# Add these for the pages content
+msgid "Investment Deals"
+msgstr "صفقات الاستثمار"
+
+msgid "Discover the latest investment opportunities in the startup ecosystem."
+msgstr "اكتشف أحدث فرص الاستثمار في نظام الشركات الناشئة."
+
+msgid "Featured Startups"
+msgstr "الشركات الناشئة المميزة"
+
+msgid "Discover innovative startups looking for investment opportunities."
+msgstr "اكتشف الشركات الناشئة المبتكرة التي تبحث عن فرص استثمارية."
+
+msgid "Active Investors"
+msgstr "المستثمرون النشطون"
+
+msgid "Connect with leading investors in the startup ecosystem."
+msgstr "تواصل مع كبار المستثمرين في نظام الشركات الناشئة." 

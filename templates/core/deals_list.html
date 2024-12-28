@@ -1,13 +1,14 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
-{% block title %}Deals - Raya Project{% endblock %}
+{% block title %}{% trans "Deals" %} - {% trans "Raya Project" %}{% endblock %}
 
 {% block content %}
 <div class="container">
     <div class="row mb-4">
         <div class="col">
-            <h1 class="display-4">Investment Deals</h1>
-            <p class="lead">Discover the latest investment opportunities in the startup ecosystem.</p>
+            <h1 class="display-4">{% trans "Investment Deals" %}</h1>
+            <p class="lead">{% trans "Discover the latest investment opportunities in the startup ecosystem." %}</p>
         </div>
     </div>
 
