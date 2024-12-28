@@ -29,7 +29,7 @@ INSTALLED_APPS = [
     'crispy_bootstrap5',
     
     # Local apps
-    'apps.core',
+    'apps.core.apps.CoreConfig',
     'apps.users',
 ]
 
@@ -132,4 +132,6 @@ LOCALE_PATHS = [
     BASE_DIR / 'locale',
 ]
 
-LANGUAGE_COOKIE_NAME = 'django_language' 
+LANGUAGE_COOKIE_NAME = 'django_language'
+
+AUTH_USER_MODEL = 'core.User' 

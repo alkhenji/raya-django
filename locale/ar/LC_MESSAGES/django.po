@@ -2,13 +2,16 @@
 msgid ""
 msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
 
+# General
 msgid "Raya Project"
 msgstr "مشروع ريا"
 
 msgid "Raya"
 msgstr "ريا"
 
+# Navigation
 msgid "Deals"
 msgstr "الصفقات"
 
@@ -18,6 +21,7 @@ msgstr "الشركات الناشئة"
 msgid "Investors"
 msgstr "المستثمرون"
 
+# User Menu
 msgid "Dashboard"
 msgstr "لوحة التحكم"
 
@@ -33,24 +37,122 @@ msgstr "القائمة"
 msgid "Login"
 msgstr "تسجيل الدخول"
 
+# Footer
 msgid "Raya Project. All rights reserved."
 msgstr "مشروع ريا. جميع الحقوق محفوظة."
 
-# Add these for the pages content
+# Deals Page
 msgid "Investment Deals"
 msgstr "صفقات الاستثمار"
 
 msgid "Discover the latest investment opportunities in the startup ecosystem."
 msgstr "اكتشف أحدث فرص الاستثمار في نظام الشركات الناشئة."
 
+msgid "Series A Funding"
+msgstr "تمويل السلسلة أ"
+
+msgid "Tech Startup"
+msgstr "شركة تكنولوجيا ناشئة"
+
+msgid "Looking for $5M investment to scale our AI-powered solution."
+msgstr "نبحث عن استثمار بقيمة 5 مليون دولار لتوسيع حلنا المدعوم بالذكاء الاصطناعي."
+
+# Startups Page
 msgid "Featured Startups"
 msgstr "الشركات الناشئة المميزة"
 
 msgid "Discover innovative startups looking for investment opportunities."
 msgstr "اكتشف الشركات الناشئة المبتكرة التي تبحث عن فرص استثمارية."
 
+msgid "TechVision AI"
+msgstr "تك فيجن للذكاء الاصطناعي"
+
+msgid "Revolutionizing computer vision with advanced AI algorithms."
+msgstr "ثورة في رؤية الكمبيوتر مع خوارزميات الذكاء الاصطناعي المتقدمة."
+
+# Investors Page
 msgid "Active Investors"
 msgstr "المستثمرون النشطون"
 
 msgid "Connect with leading investors in the startup ecosystem."
-msgstr "تواصل مع كبار المستثمرين في نظام الشركات الناشئة." 
+msgstr "تواصل مع كبار المستثمرين في نظام الشركات الناشئة."
+
+msgid "Tech Ventures Capital"
+msgstr "تك فينتشرز كابيتال"
+
+msgid "Early-stage venture capital firm focused on technology startups."
+msgstr "شركة رأس مال مغامر في المراحل المبكرة تركز على الشركات التكنولوجيا الناشئة."
+
+# Common Labels
+msgid "Technology"
+msgstr "تكنولوجيا"
+
+msgid "Active"
+msgstr "نشط"
+
+msgid "AI/ML"
+msgstr "ذكاء اصطناعي/تعلم آلي"
+
+msgid "Series A"
+msgstr "السلسلة أ"
+
+msgid "Founded:"
+msgstr "تأسست:"
+
+msgid "Investment Range:"
+msgstr "نطاق الاستثمار:"
+
+# Signup Page
+msgid "Sign Up"
+msgstr "تسجيل"
+
+msgid "Join Raya"
+msgstr "انضم إلى ريا"
+
+msgid "Choose your account type to get started"
+msgstr "اختر نوع حسابك للبدء"
+
+msgid "Investor"
+msgstr "مستثمر"
+
+msgid "Find promising startups and investment opportunities"
+msgstr "ابحث عن الشركات الناشئة الواعدة وفرص الاستثمار"
+
+msgid "Startup"
+msgstr "شركة ناشئة"
+
+msgid "Connect with investors and raise capital"
+msgstr "تواصل مع المستثمرين واجمع رأس المال"
+
+msgid "Individual"
+msgstr "فرد"
+
+msgid "Join our community as an individual member"
+msgstr "انضم إلى مجتمعنا كعضو فردي"
+
+msgid "Email"
+msgstr "البريد الإلكتروني"
+
+msgid "Password"
+msgstr "كلمة المرور"
+
+msgid "Confirm Password"
+msgstr "تأكيد كلمة المرور"
+
+msgid "Company Name"
+msgstr "اسم الشركة"
+
+msgid "Investment Range"
+msgstr "نطاق الاستثمار"
+
+msgid "Startup Name"
+msgstr "اسم الشركة الناشئة"
+
+msgid "Industry"
+msgstr "الصناعة"
+
+msgid "First Name"
+msgstr "الاسم الأول"
+
+msgid "Last Name"
+msgstr "اسم العائلة" 

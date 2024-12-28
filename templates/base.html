@@ -57,6 +57,9 @@
                                 <li><a class="dropdown-item" href="{% url 'admin:login' %}">
                                     <i class="bi bi-box-arrow-in-right"></i> {% trans "Login" %}
                                 </a></li>
+                                <li><a class="dropdown-item" href="{% url 'core:signup' %}">
+                                    <i class="bi bi-person-plus"></i> {% trans "Sign Up" %}
+                                </a></li>
                                 <li><hr class="dropdown-divider"></li>
                                 <li><h6 class="dropdown-header">{% trans "Language" %}</h6></li>
                                 <li><a class="dropdown-item" href="{% url 'core:set_language' %}?lang=en">English</a></li>

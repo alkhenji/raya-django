@@ -24,7 +24,7 @@ Raya is an MVC (Model-View-Controller) web application framework built on Django
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/your-username/raya.git
+   git clone https://github.com/alkhenji/raya.git
    cd raya
    ```
 

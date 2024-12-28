@@ -1,0 +1,126 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}{% trans "Sign Up" %} - {% trans "Raya Project" %}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row mb-4">
+        <div class="col text-center">
+            <h1 class="display-4">{% trans "Join Raya" %}</h1>
+            <p class="lead">{% trans "Choose your account type to get started" %}</p>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <div class="card h-100 {% if user_type == 'investor' %}border-primary{% endif %}" 
+                 role="button" 
+                 onclick="window.location='{% url 'core:signup' %}?type=investor'">
+                <div class="card-body text-center">
+                    <i class="bi bi-briefcase display-4"></i>
+                    <h3 class="card-title">{% trans "Investor" %}</h3>
+                    <p class="card-text">{% trans "Find promising startups and investment opportunities" %}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 {% if user_type == 'startup' %}border-primary{% endif %}"
+                 role="button"
+                 onclick="window.location='{% url 'core:signup' %}?type=startup'">
+                <div class="card-body text-center">
+                    <i class="bi bi-rocket-takeoff display-4"></i>
+                    <h3 class="card-title">{% trans "Startup" %}</h3>
+                    <p class="card-text">{% trans "Connect with investors and raise capital" %}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 {% if user_type == 'individual' %}border-primary{% endif %}"
+                 role="button"
+                 onclick="window.location='{% url 'core:signup' %}?type=individual'">
+                <div class="card-body text-center">
+                    <i class="bi bi-person display-4"></i>
+                    <h3 class="card-title">{% trans "Individual" %}</h3>
+                    <p class="card-text">{% trans "Join our community as an individual member" %}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card">
+                <div class="card-body">
+                    <form method="post" class="needs-validation" novalidate>
+                        {% csrf_token %}
+                        
+                        <div class="mb-3">
+                            <label for="email" class="form-label">{% trans "Email" %}</label>
+                            {{ form.email }}
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="password" class="form-label">{% trans "Password" %}</label>
+                            {{ form.password }}
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="confirm_password" class="form-label">{% trans "Confirm Password" %}</label>
+                            {{ form.confirm_password }}
+                        </div>
+
+                        {% if user_type == 'investor' %}
+                            <div class="mb-3">
+                                <label for="company_name" class="form-label">{% trans "Company Name" %}</label>
+                                {{ form.company_name }}
+                            </div>
+                            <div class="mb-3">
+                                <label for="investment_range" class="form-label">{% trans "Investment Range" %}</label>
+                                {{ form.investment_range }}
+                            </div>
+                        {% elif user_type == 'startup' %}
+                            <div class="mb-3">
+                                <label for="startup_name" class="form-label">{% trans "Startup Name" %}</label>
+                                {{ form.startup_name }}
+                            </div>
+                            <div class="mb-3">
+                                <label for="industry" class="form-label">{% trans "Industry" %}</label>
+                                {{ form.industry }}
+                            </div>
+                        {% else %}
+                            <div class="mb-3">
+                                <label for="first_name" class="form-label">{% trans "First Name" %}</label>
+                                {{ form.first_name }}
+                            </div>
+                            <div class="mb-3">
+                                <label for="last_name" class="form-label">{% trans "Last Name" %}</label>
+                                {{ form.last_name }}
+                            </div>
+                        {% endif %}
+
+                        <button type="submit" class="btn btn-primary">{% trans "Sign Up" %}</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Form validation
+    const forms = document.querySelectorAll('.needs-validation');
+    Array.from(forms).forEach(form => {
+        form.addEventListener('submit', event => {
+            if (!form.checkValidity()) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+            form.classList.add('was-validated');
+        }, false);
+    });
+});
+</script>
+{% endblock %} 
