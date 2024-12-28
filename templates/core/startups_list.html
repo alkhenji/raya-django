@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block title %}Startups - Raya Project{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row mb-4">
+        <div class="col">
+            <h1 class="display-4">Featured Startups</h1>
+            <p class="lead">Discover innovative startups looking for investment opportunities.</p>
+        </div>
+    </div>
+
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="col">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">TechVision AI</h5>
+                    <p class="card-text">Revolutionizing computer vision with advanced AI algorithms.</p>
+                    <div class="mb-2">
+                        <span class="badge bg-primary">AI/ML</span>
+                        <span class="badge bg-secondary">Series A</span>
+                    </div>
+                    <small class="text-muted">Founded: 2022</small>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">GreenEnergy Solutions</h5>
+                    <p class="card-text">Sustainable energy solutions for a better tomorrow.</p>
+                    <div class="mb-2">
+                        <span class="badge bg-success">CleanTech</span>
+                        <span class="badge bg-secondary">Seed Stage</span>
+                    </div>
+                    <small class="text-muted">Founded: 2023</small>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">HealthTech Innovations</h5>
+                    <p class="card-text">Digital health platform for remote patient monitoring.</p>
+                    <div class="mb-2">
+                        <span class="badge bg-info">HealthTech</span>
+                        <span class="badge bg-secondary">Pre-Seed</span>
+                    </div>
+                    <small class="text-muted">Founded: 2023</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

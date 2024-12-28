@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block title %}Investors - Raya Project{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row mb-4">
+        <div class="col">
+            <h1 class="display-4">Active Investors</h1>
+            <p class="lead">Connect with leading investors in the startup ecosystem.</p>
+        </div>
+    </div>
+
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="col">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Tech Ventures Capital</h5>
+                    <p class="card-text">Early-stage venture capital firm focused on technology startups.</p>
+                    <div class="mb-2">
+                        <span class="badge bg-primary">Technology</span>
+                        <span class="badge bg-info">Series A</span>
+                    </div>
+                    <small class="text-muted">Investment Range: $1M - $5M</small>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Green Impact Fund</h5>
+                    <p class="card-text">Impact investment fund focusing on sustainable technologies.</p>
+                    <div class="mb-2">
+                        <span class="badge bg-success">Sustainability</span>
+                        <span class="badge bg-info">Seed Stage</span>
+                    </div>
+                    <small class="text-muted">Investment Range: $500K - $2M</small>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Healthcare Innovation Partners</h5>
+                    <p class="card-text">Specialized in healthcare and biotech investments.</p>
+                    <div class="mb-2">
+                        <span class="badge bg-warning">Healthcare</span>
+                        <span class="badge bg-info">All Stages</span>
+                    </div>
+                    <small class="text-muted">Investment Range: $250K - $10M</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 
