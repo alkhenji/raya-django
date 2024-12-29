@@ -67,6 +67,11 @@
                             </ul>
                         </li>
                     {% endif %}
+                    {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'core:dashboard' %}">Dashboard</a>
+                        </li>
+                    {% endif %}
                 </ul>
             </div>
         </div>

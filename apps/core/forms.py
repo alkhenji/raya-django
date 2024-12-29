@@ -1,54 +1,52 @@
 from django import forms
-from django.utils.translation import gettext_lazy as _
+from .models import IndividualProfile, InvestorProfile, StartupProfile, Deal, User
 
-class SignupForm(forms.Form):
-    USER_TYPES = [
-        ('investor', _('Investor')),
-        ('startup', _('Startup')),
-        ('individual', _('Individual')),
-    ]
+class SignupForm(forms.ModelForm):
+    password1 = forms.CharField(label='Password', widget=forms.PasswordInput)
+    password2 = forms.CharField(label='Confirm Password', widget=forms.PasswordInput)
 
-    user_type = forms.ChoiceField(
-        choices=USER_TYPES,
-        widget=forms.RadioSelect(attrs={'class': 'form-check-input'}),
-        initial='investor'
-    )
-    email = forms.EmailField(
-        widget=forms.EmailInput(attrs={'class': 'form-control'})
-    )
-    password = forms.CharField(
-        widget=forms.PasswordInput(attrs={'class': 'form-control'})
-    )
-    confirm_password = forms.CharField(
-        widget=forms.PasswordInput(attrs={'class': 'form-control'})
-    )
+    class Meta:
+        model = User
+        fields = ['email', 'username', 'user_type']
 
-    # Investor-specific fields
-    company_name = forms.CharField(
-        required=False,
-        widget=forms.TextInput(attrs={'class': 'form-control'})
-    )
-    investment_range = forms.CharField(
-        required=False,
-        widget=forms.TextInput(attrs={'class': 'form-control'})
-    )
+    def clean_password2(self):
+        password1 = self.cleaned_data.get('password1')
+        password2 = self.cleaned_data.get('password2')
+        if password1 and password2 and password1 != password2:
+            raise forms.ValidationError('Passwords do not match')
+        return password2
 
-    # Startup-specific fields
-    startup_name = forms.CharField(
-        required=False,
-        widget=forms.TextInput(attrs={'class': 'form-control'})
-    )
-    industry = forms.CharField(
-        required=False,
-        widget=forms.TextInput(attrs={'class': 'form-control'})
-    )
+class IndividualForm(forms.ModelForm):
+    class Meta:
+        model = IndividualProfile
+        fields = ['first_name', 'last_name', 'title', 'company', 'interests', 'linkedin_url']
 
-    # Individual-specific fields
-    first_name = forms.CharField(
-        required=False,
-        widget=forms.TextInput(attrs={'class': 'form-control'})
-    )
-    last_name = forms.CharField(
-        required=False,
-        widget=forms.TextInput(attrs={'class': 'form-control'})
-    ) 
+class InvestorForm(forms.ModelForm):
+    class Meta:
+        model = InvestorProfile
+        fields = [
+            'company_name', 'description', 'website', 'location', 'founded_year', 'team_size',
+            'preferred_industries', 'preferred_stages', 'investment_range_min', 'investment_range_max',
+            'sectors_of_interest', 'linkedin_url', 'crunchbase_url'
+        ]
+
+class StartupForm(forms.ModelForm):
+    class Meta:
+        model = StartupProfile
+        fields = [
+            'company_name', 'tagline', 'description', 'industry', 'stage', 'founding_date',
+            'location', 'team_size', 'revenue_range', 'website', 'linkedin_url', 'crunchbase_url',
+            'pitch_deck', 'current_funding_target', 'min_ticket_size', 'equity_offering'
+        ]
+
+class DealForm(forms.ModelForm):
+    class Meta:
+        model = Deal
+        fields = [
+            'title', 'description', 'deal_type', 'amount', 'equity_offered',
+            'min_investment', 'target_close_date', 'industry', 'deal_documents',
+            'terms_and_conditions'
+        ]
+        widgets = {
+            'target_close_date': forms.DateInput(attrs={'type': 'date'}),
+        } 

@@ -10,4 +10,8 @@ urlpatterns = [
     path('investors/', views.InvestorsListView.as_view(), name='investors'),
     path('signup/', views.SignupView.as_view(), name='signup'),
     path('set-language/', views.set_language, name='set_language'),
+    path('dashboard/', views.dashboard, name='dashboard'),
+    path('create-deal/', views.CreateDealView.as_view(), name='create_deal'),
+    path('create-startup/', views.CreateStartupView.as_view(), name='create_startup'),
+    path('create-investor/', views.CreateInvestorView.as_view(), name='create_investor'),
 ] 
