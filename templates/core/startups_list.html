@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load i18n %}
 
-{% block title %}{% trans "Startups" %} - {% trans "Raya Project" %}{% endblock %}
+{% block title %}{% trans "Featured Startups" %} - {% trans "Raya Project" %}{% endblock %}
 
 {% block content %}
 <div class="container">
@@ -12,46 +12,145 @@
         </div>
     </div>
 
-    <div class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="row row-cols-1 row-cols-md-3 g-4 mb-4">
+        {% for startup in startups %}
         <div class="col">
             <div class="card h-100">
                 <div class="card-body">
-                    <h5 class="card-title">{% trans "TechVision AI" %}</h5>
-                    <p class="card-text">{% trans "Revolutionizing computer vision with advanced AI algorithms." %}</p>
-                    <div class="mb-2">
-                        <span class="badge bg-primary">{% trans "AI/ML" %}</span>
-                        <span class="badge bg-secondary">{% trans "Series A" %}</span>
+                    <div class="d-flex justify-content-between align-items-start mb-3">
+                        <div>
+                            <h5 class="card-title mb-1">{{ startup.company_name }}</h5>
+                            <p class="text-muted small mb-2">{{ startup.location }}</p>
+                        </div>
+                        {% if startup.verified %}
+                        <span class="badge bg-success">
+                            <i class="fas fa-check-circle"></i> {% trans "Verified" %}
+                        </span>
+                        {% endif %}
                     </div>
-                    <small class="text-muted">{% trans "Founded:" %} 2022</small>
+
+                    <p class="card-subtitle mb-2 fw-bold text-primary">{{ startup.tagline }}</p>
+                    <p class="card-text">{{ startup.description|truncatewords:30 }}</p>
+                    
+                    <div class="mb-3">
+                        <span class="badge bg-primary">{{ startup.industry }}</span>
+                        <span class="badge bg-info">{{ startup.get_stage_display }}</span>
+                        <span class="badge bg-secondary">{{ startup.get_revenue_range_display }}</span>
+                    </div>
+                    
+                    <div class="startup-details">
+                        <small class="text-muted d-block">
+                            <i class="fas fa-users"></i> {% trans "Team Size" %}: {{ startup.team_size }}
+                        </small>
+                        <small class="text-muted d-block">
+                            <i class="fas fa-calendar"></i> {% trans "Founded" %}: {{ startup.founding_date|date:"M Y" }}
+                        </small>
+                        <small class="text-muted d-block">
+                            <i class="fas fa-money-bill"></i> {% trans "Total Funding" %}: ${{ startup.total_funding_raised|floatformat:0 }}
+                        </small>
+                    </div>
+                </div>
+                <div class="card-footer bg-transparent">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="social-links">
+                            {% if startup.website %}
+                            <a href="{{ startup.website }}" target="_blank" class="text-muted me-2">
+                                <i class="fas fa-globe"></i>
+                            </a>
+                            {% endif %}
+                            {% if startup.linkedin_url %}
+                            <a href="{{ startup.linkedin_url }}" target="_blank" class="text-muted me-2">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                            {% endif %}
+                            {% if startup.crunchbase_url %}
+                            <a href="{{ startup.crunchbase_url }}" target="_blank" class="text-muted">
+                                <i class="fas fa-chart-line"></i>
+                            </a>
+                            {% endif %}
+                        </div>
+                        <a href="#" class="btn btn-sm btn-outline-primary">{% trans "View Profile" %}</a>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col">
-            <div class="card h-100">
-                <div class="card-body">
-                    <h5 class="card-title">GreenEnergy Solutions</h5>
-                    <p class="card-text">Sustainable energy solutions for a better tomorrow.</p>
-                    <div class="mb-2">
-                        <span class="badge bg-success">CleanTech</span>
-                        <span class="badge bg-secondary">Seed Stage</span>
-                    </div>
-                    <small class="text-muted">Founded: 2023</small>
-                </div>
+        {% empty %}
+        <div class="col-12">
+            <div class="alert alert-info">
+                {% trans "No verified startups available at the moment." %}
             </div>
         </div>
-        <div class="col">
-            <div class="card h-100">
-                <div class="card-body">
-                    <h5 class="card-title">HealthTech Innovations</h5>
-                    <p class="card-text">Digital health platform for remote patient monitoring.</p>
-                    <div class="mb-2">
-                        <span class="badge bg-info">HealthTech</span>
-                        <span class="badge bg-secondary">Pre-Seed</span>
-                    </div>
-                    <small class="text-muted">Founded: 2023</small>
-                </div>
-            </div>
-        </div>
+        {% endfor %}
     </div>
+
+    {% if is_paginated %}
+    <nav aria-label="{% trans 'Startups pagination' %}" class="my-4">
+        <ul class="pagination justify-content-center">
+            {% if page_obj.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="{% trans 'Previous' %}">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+            {% else %}
+                <li class="page-item disabled">
+                    <span class="page-link" aria-hidden="true">&laquo;</span>
+                </li>
+            {% endif %}
+
+            {% for num in page_obj.paginator.page_range %}
+                {% if page_obj.number == num %}
+                    <li class="page-item active"><span class="page-link">{{ num }}</span></li>
+                {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                    <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+                {% endif %}
+            {% endfor %}
+
+            {% if page_obj.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="{% trans 'Next' %}">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            {% else %}
+                <li class="page-item disabled">
+                    <span class="page-link" aria-hidden="true">&raquo;</span>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
+    {% endif %}
 </div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .card {
+        transition: transform 0.2s;
+    }
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+    .startup-details {
+        margin-top: 1rem;
+        padding-top: 1rem;
+        border-top: 1px solid rgba(0,0,0,0.1);
+    }
+    .startup-details small {
+        margin-bottom: 0.25rem;
+    }
+    .startup-details i {
+        width: 20px;
+        text-align: center;
+        margin-right: 0.5rem;
+    }
+    .social-links a {
+        text-decoration: none;
+        transition: color 0.2s;
+    }
+    .social-links a:hover {
+        color: #0d6efd !important;
+    }
+</style>
 {% endblock %} 

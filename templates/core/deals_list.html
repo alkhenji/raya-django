@@ -12,40 +12,113 @@
         </div>
     </div>
 
-    <div class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="row row-cols-1 row-cols-md-3 g-4 mb-4">
+        {% for deal in deals %}
         <div class="col">
             <div class="card h-100">
                 <div class="card-body">
-                    <h5 class="card-title">{% trans "Series A Funding" %}</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">{% trans "Tech Startup" %}</h6>
-                    <p class="card-text">{% trans "Looking for $5M investment to scale our AI-powered solution." %}</p>
-                    <span class="badge bg-primary">{% trans "Technology" %}</span>
-                    <span class="badge bg-success">{% trans "Active" %}</span>
+                    <h5 class="card-title">{{ deal.title }}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">{{ deal.startup.company_name }}</h6>
+                    <p class="card-text">{{ deal.description|truncatewords:30 }}</p>
+                    
+                    <div class="mb-3">
+                        <span class="badge bg-primary">{{ deal.industry }}</span>
+                        <span class="badge bg-info">{{ deal.get_deal_type_display }}</span>
+                        <span class="badge bg-success">{{ deal.get_status_display }}</span>
+                    </div>
+                    
+                    <div class="deal-details">
+                        <small class="text-muted d-block">
+                            <i class="fas fa-money-bill"></i> {% trans "Amount" %}: ${{ deal.amount|floatformat:0 }}
+                        </small>
+                        <small class="text-muted d-block">
+                            <i class="fas fa-chart-pie"></i> {% trans "Equity" %}: {{ deal.equity_offered }}%
+                        </small>
+                        <small class="text-muted d-block">
+                            <i class="fas fa-users"></i> {% trans "Investors" %}: {{ deal.number_of_investors }}
+                        </small>
+                    </div>
+                </div>
+                <div class="card-footer bg-transparent">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <small class="text-muted">
+                            {% trans "Min Investment" %}: ${{ deal.min_investment|floatformat:0 }}
+                        </small>
+                        <a href="#" class="btn btn-sm btn-outline-primary">{% trans "View Details" %}</a>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col">
-            <div class="card h-100">
-                <div class="card-body">
-                    <h5 class="card-title">{% trans "Seed Round" %}</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">{% trans "Green Energy" %}</h6>
-                    <p class="card-text">{% trans "Sustainable energy startup seeking $1M seed investment." %}</p>
-                    <span class="badge bg-info">{% trans "Energy" %}</span>
-                    <span class="badge bg-success">{% trans "Active" %}</span>
-                </div>
+        {% empty %}
+        <div class="col-12">
+            <div class="alert alert-info">
+                {% trans "No active deals available at the moment." %}
             </div>
         </div>
-        <div class="col">
-            <div class="card h-100">
-                <div class="card-body">
-                    <h5 class="card-title">{% trans "Pre-Seed Investment" %}</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">{% trans "HealthTech" %}</h6>
-                    <p class="card-text">{% trans "Revolutionary healthcare platform looking for $500K investment." %}</p>
-                    <span class="badge bg-warning">{% trans "Healthcare" %}</span>
-                    <span class="badge bg-success">{% trans "Active" %}</span>
-                </div>
-            </div>
-        </div>
+        {% endfor %}
     </div>
+
+    {% if is_paginated %}
+    <nav aria-label="{% trans 'Deals pagination' %}" class="my-4">
+        <ul class="pagination justify-content-center">
+            {% if page_obj.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="{% trans 'Previous' %}">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+            {% else %}
+                <li class="page-item disabled">
+                    <span class="page-link" aria-hidden="true">&laquo;</span>
+                </li>
+            {% endif %}
+
+            {% for num in page_obj.paginator.page_range %}
+                {% if page_obj.number == num %}
+                    <li class="page-item active"><span class="page-link">{{ num }}</span></li>
+                {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                    <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+                {% endif %}
+            {% endfor %}
+
+            {% if page_obj.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="{% trans 'Next' %}">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            {% else %}
+                <li class="page-item disabled">
+                    <span class="page-link" aria-hidden="true">&raquo;</span>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
+    {% endif %}
 </div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .card {
+        transition: transform 0.2s;
+    }
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+    .deal-details {
+        margin-top: 1rem;
+        padding-top: 1rem;
+        border-top: 1px solid rgba(0,0,0,0.1);
+    }
+    .deal-details small {
+        margin-bottom: 0.25rem;
+    }
+    .deal-details i {
+        width: 20px;
+        text-align: center;
+        margin-right: 0.5rem;
+    }
+</style>
 {% endblock %} 
