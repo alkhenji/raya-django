@@ -2,10 +2,15 @@
 {% load i18n %}
 {% load static %}
 
-{% block title %}{% trans "Investors" %} - {% trans "Raya" %}{% endblock %}
+{% block title %}{% trans "المستثمرون" %} - {% trans "راية" %}{% endblock %}
 
 {% block extra_css %}
 <style>
+    body {
+        direction: rtl;
+        text-align: right;
+    }
+
     .investors-header {
         background: linear-gradient(135deg, #0d6efd 0%, #0dcaf0 100%);
         color: white;
@@ -19,6 +24,7 @@
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
         transition: transform 0.2s;
         height: 100%;
+        text-align: right;
     }
     
     .investor-card:hover {
@@ -41,6 +47,8 @@
         color: #0d6efd;
         width: 20px;
         text-align: center;
+        margin-left: 0.5rem;
+        margin-right: 0;
     }
     
     .preference-tags {
@@ -48,7 +56,7 @@
     }
     
     .preference-tags .badge {
-        margin-right: 0.5rem;
+        margin-left: 0.5rem;
         margin-bottom: 0.5rem;
     }
 
@@ -63,6 +71,8 @@
 
     .investment-info i {
         color: #0d6efd;
+        margin-left: 0.5rem;
+        margin-right: 0;
     }
 
     .investment-range {
@@ -70,6 +80,65 @@
         align-items: center;
         gap: 0.5rem;
         margin-top: 0.5rem;
+    }
+
+    /* RTL specific adjustments */
+    .me-2 {
+        margin-left: 0.5rem !important;
+        margin-right: 0 !important;
+    }
+
+    .ms-2 {
+        margin-right: 0.5rem !important;
+        margin-left: 0 !important;
+    }
+
+    .ms-auto {
+        margin-right: auto !important;
+        margin-left: 0 !important;
+    }
+
+    .me-auto {
+        margin-left: auto !important;
+        margin-right: 0 !important;
+    }
+
+    .text-end {
+        text-align: left !important;
+    }
+
+    .text-start {
+        text-align: right !important;
+    }
+
+    .text-lg-end {
+        text-align: left !important;
+    }
+
+    .social-links a {
+        margin-left: 0.75rem;
+        margin-right: 0;
+    }
+
+    .card-body {
+        text-align: right;
+    }
+
+    .pagination {
+        direction: ltr;
+    }
+
+    .btn i {
+        margin-left: 0.5rem;
+        margin-right: 0;
+    }
+
+    .d-flex.justify-content-between {
+        direction: rtl;
+    }
+
+    .card-title, .card-text, .text-muted {
+        text-align: right;
     }
 </style>
 {% endblock %}
@@ -80,13 +149,13 @@
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-8">
-                <h1 class="display-4 fw-bold mb-4">{% trans "Active Investors" %}</h1>
-                <p class="lead mb-4">{% trans "Connect with investors interested in funding promising startups" %}</p>
+                <h1 class="display-4 fw-bold mb-4">{% trans "المستثمرون النشطون" %}</h1>
+                <p class="lead mb-4">{% trans "تواصل مع المستثمرين المهتمين بالاستثمار في الشركات الناشئة الواعدة" %}</p>
             </div>
             <div class="col-lg-4 text-lg-end">
                 <a href="{% url 'core:create_investor' %}" class="btn btn-light btn-lg">
                     <i class="fas fa-plus-circle"></i>
-                    {% trans "Register as Investor" %}
+                    {% trans "تسجيل كمستثمر" %}
                 </a>
             </div>
         </div>
@@ -110,7 +179,7 @@
                         {% if investor.verified %}
                         <span class="badge bg-success">
                             <i class="fas fa-check-circle"></i>
-                            {% trans "Verified" %}
+                            {% trans "موثق" %}
                         </span>
                         {% endif %}
                     </div>
@@ -122,7 +191,7 @@
                         </div>
                         <div>
                             <i class="fas fa-chart-line"></i>
-                            {{ investor.total_investments }} {% trans "investments" %}
+                            {{ investor.total_investments }} {% trans "استثمار" %}
                         </div>
                     </div>
                     
@@ -140,7 +209,7 @@
                     <div class="investment-info">
                         <i class="fas fa-coins"></i>
                         <div>
-                            <small class="text-muted d-block">{% trans "Investment Range" %}</small>
+                            <small class="text-muted d-block">{% trans "نطاق الاستثمار" %}</small>
                             <div class="investment-range">
                                 <strong>${{ investor.investment_range_min|floatformat:0 }}K</strong>
                                 <span class="text-muted">-</span>
@@ -169,7 +238,7 @@
                             </a>
                             {% endif %}
                         </div>
-                        <a href="#" class="btn btn-sm btn-outline-primary">{% trans "View Profile" %}</a>
+                        <a href="#" class="btn btn-sm btn-outline-primary">{% trans "عرض الملف" %}</a>
                     </div>
                 </div>
             </div>
@@ -179,17 +248,17 @@
 
     <!-- Pagination -->
     {% if is_paginated %}
-    <nav aria-label="{% trans 'Browse investors' %}" class="my-5">
+    <nav aria-label="{% trans 'تصفح المستثمرين' %}" class="my-5">
         <ul class="pagination justify-content-center">
             {% if page_obj.has_previous %}
             <li class="page-item">
-                <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="{% trans 'Previous' %}">
-                    <span aria-hidden="true">&laquo;</span>
+                <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="{% trans 'السابق' %}">
+                    <span aria-hidden="true">&raquo;</span>
                 </a>
             </li>
             {% else %}
             <li class="page-item disabled">
-                <span class="page-link" aria-hidden="true">&laquo;</span>
+                <span class="page-link" aria-hidden="true">&raquo;</span>
             </li>
             {% endif %}
 
@@ -207,13 +276,13 @@
 
             {% if page_obj.has_next %}
             <li class="page-item">
-                <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="{% trans 'Next' %}">
-                    <span aria-hidden="true">&raquo;</span>
+                <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="{% trans 'التالي' %}">
+                    <span aria-hidden="true">&laquo;</span>
                 </a>
             </li>
             {% else %}
             <li class="page-item disabled">
-                <span class="page-link" aria-hidden="true">&raquo;</span>
+                <span class="page-link" aria-hidden="true">&laquo;</span>
             </li>
             {% endif %}
         </ul>
@@ -222,12 +291,12 @@
 
     {% else %}
     <div class="text-center py-5">
-        <img src="{% static 'img/empty-state.svg' %}" alt="{% trans 'No investors' %}" class="img-fluid mb-4" style="max-width: 300px;">
-        <h3>{% trans "No registered investors yet" %}</h3>
-        <p class="text-muted">{% trans "Be the first to register as an investor" %}</p>
+        <img src="{% static 'img/empty-state.svg' %}" alt="{% trans 'لا يوجد مستثمرون' %}" class="img-fluid mb-4" style="max-width: 300px;">
+        <h3>{% trans "لا يوجد مستثمرون مسجلون حالياً" %}</h3>
+        <p class="text-muted">{% trans "كن أول من يسجل كمستثمر" %}</p>
         <a href="{% url 'core:create_investor' %}" class="btn btn-primary">
             <i class="fas fa-plus-circle"></i>
-            {% trans "Register as Investor" %}
+            {% trans "تسجيل كمستثمر" %}
         </a>
     </div>
     {% endif %}

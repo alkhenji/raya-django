@@ -1,19 +1,335 @@
 {% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
 
-{% block title %}Home - Raya Project{% endblock %}
+{% block title %}{% trans "Welcome to Raya" %} - {% trans "Connect Startups & Investors" %}{% endblock %}
+
+{% block extra_css %}
+<style>
+    .hero-section {
+        background: linear-gradient(135deg, #0d6efd 0%, #0dcaf0 100%);
+        color: white;
+        padding: 6rem 0;
+        margin-bottom: 4rem;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .hero-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='rgba(255,255,255,0.05)' fill-rule='evenodd'/%3E%3C/svg%3E");
+        opacity: 0.1;
+    }
+    
+    .stats-card {
+        background: white;
+        border-radius: 1rem;
+        padding: 2rem;
+        text-align: center;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+        margin-top: -4rem;
+        transition: transform 0.3s ease;
+    }
+    
+    .stats-card:hover {
+        transform: translateY(-5px);
+    }
+    
+    .stats-card .number {
+        font-size: 2.5rem;
+        font-weight: bold;
+        background: linear-gradient(135deg, #0d6efd 0%, #0dcaf0 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 0.5rem;
+    }
+    
+    .feature-card {
+        text-align: center;
+        padding: 2.5rem;
+        border-radius: 1rem;
+        background: white;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+    }
+    
+    .feature-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        border-color: #0d6efd;
+    }
+    
+    .feature-icon {
+        font-size: 2.5rem;
+        background: linear-gradient(135deg, #0d6efd 0%, #0dcaf0 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 1.5rem;
+    }
+    
+    .recent-card {
+        border-radius: 1rem;
+        overflow: hidden;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        height: 100%;
+    }
+    
+    .recent-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        border-color: #0d6efd;
+    }
+    
+    .recent-card .card-img-top {
+        height: 200px;
+        object-fit: cover;
+        object-position: center;
+    }
+    
+    .hero-section img {
+        max-height: 400px;
+        object-fit: contain;
+        animation: float 6s ease-in-out infinite;
+    }
+    
+    @keyframes float {
+        0% { transform: translateY(0px); }
+        50% { transform: translateY(-20px); }
+        100% { transform: translateY(0px); }
+    }
+    
+    .section-title {
+        position: relative;
+        margin-bottom: 3rem;
+        padding-bottom: 1rem;
+        text-align: center;
+    }
+    
+    .section-title::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 50px;
+        height: 3px;
+        background: linear-gradient(135deg, #0d6efd 0%, #0dcaf0 100%);
+    }
+    
+    .cta-section {
+        background: linear-gradient(135deg, #0d6efd 0%, #0dcaf0 100%);
+        padding: 6rem 0;
+        margin-top: 4rem;
+        color: white;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .cta-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='rgba(255,255,255,0.05)' fill-rule='evenodd'/%3E%3C/svg%3E");
+        opacity: 0.1;
+    }
+
+    .btn-gradient {
+        background: linear-gradient(135deg, #0d6efd 0%, #0dcaf0 100%);
+        border: none;
+        color: white;
+        transition: all 0.3s ease;
+    }
+
+    .btn-gradient:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(13, 110, 253, 0.3);
+    }
+
+    .badge {
+        padding: 0.5em 1em;
+        font-weight: 500;
+    }
+
+    .badge.bg-gradient {
+        background: linear-gradient(135deg, #0d6efd 0%, #0dcaf0 100%);
+    }
+</style>
+{% endblock %}
 
 {% block content %}
-<div class="px-4 py-5 my-5 text-center">
-    <h1 class="display-5 fw-bold">Welcome to Raya</h1>
-    <div class="col-lg-6 mx-auto">
-        <p class="lead mb-4">
-            A powerful MVC web application framework built on Django.
-            Create robust, modular, and maintainable web applications effortlessly.
-        </p>
-        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-            <a href="{% url 'admin:index' %}" class="btn btn-primary btn-lg px-4 gap-3">Admin Panel</a>
-            <a href="https://github.com/alkhenji/raya-django" class="btn btn-outline-secondary btn-lg px-4">View on GitHub</a>
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h1 class="display-4 fw-bold mb-4">{% trans "Connect with the Right Investors & Startups" %}</h1>
+                <p class="lead mb-4">{% trans "Raya is your trusted platform for connecting startups with investors. Find your next investment opportunity or funding partner today." %}</p>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                    <a href="{% url 'core:signup' %}?type=startup" class="btn btn-light btn-lg px-4 me-md-2">{% trans "Join as Startup" %}</a>
+                    <a href="{% url 'core:signup' %}?type=investor" class="btn btn-outline-light btn-lg px-4">{% trans "Join as Investor" %}</a>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <img src="{% static 'img/hero-illustration.svg' %}" alt="{% trans 'Connecting Startups with Investors' %}" class="img-fluid">
+            </div>
         </div>
     </div>
-</div>
+</section>
+
+<!-- Stats Section -->
+<section class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="stats-card">
+                <div class="number">{{ stats.startups }}</div>
+                <div class="text-muted">{% trans "Verified Startups" %}</div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="stats-card">
+                <div class="number">{{ stats.investors }}</div>
+                <div class="text-muted">{% trans "Active Investors" %}</div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="stats-card">
+                <div class="number">{{ stats.deals }}</div>
+                <div class="text-muted">{% trans "Active Deals" %}</div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="stats-card">
+                <div class="number">${{ stats.total_investment|floatformat:0 }}M</div>
+                <div class="text-muted">{% trans "Total Investment" %}</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="container my-5 py-5">
+    <h2 class="section-title">{% trans "Why Choose Raya" %}</h2>
+    <div class="row g-4">
+        {% for feature in features %}
+        <div class="col-md-3">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="{{ feature.icon }}"></i>
+                </div>
+                <h3 class="h5 mb-3">{{ feature.title }}</h3>
+                <p class="text-muted mb-0">{{ feature.description }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<!-- Recent Deals Section -->
+<section class="container my-5 py-5">
+    <h2 class="section-title">{% trans "Recent Investment Opportunities" %}</h2>
+    <div class="row g-4">
+        {% for deal in recent_deals %}
+        <div class="col-md-4">
+            <div class="card recent-card">
+                <img src="https://images.unsplash.com/photo-1553729459-efe14ef6055d?auto=format&w=500&q=60" class="card-img-top" alt="{{ deal.title }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ deal.title }}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">{{ deal.startup.company_name }}</h6>
+                    <p class="card-text">{{ deal.description|truncatewords:20 }}</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="badge bg-gradient">${{ deal.amount|floatformat:0 }}</span>
+                        <a href="#" class="btn btn-sm btn-gradient">{% trans "Learn More" %}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<!-- Featured Startups Section -->
+<section class="container my-5 py-5">
+    <h2 class="section-title">{% trans "Featured Startups" %}</h2>
+    <div class="row g-4">
+        {% for startup in featured_startups %}
+        <div class="col-md-4">
+            <div class="card recent-card">
+                <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&w=500&q=60" class="card-img-top" alt="{{ startup.company_name }}">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-start mb-3">
+                        <div>
+                            <h5 class="card-title mb-1">{{ startup.company_name }}</h5>
+                            <p class="text-muted small">{{ startup.location }}</p>
+                        </div>
+                        {% if startup.verified %}
+                        <span class="badge bg-gradient">
+                            <i class="fas fa-check-circle"></i>
+                        </span>
+                        {% endif %}
+                    </div>
+                    <p class="card-text">{{ startup.tagline }}</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="badge bg-gradient">{{ startup.get_stage_display }}</span>
+                        <a href="#" class="btn btn-sm btn-gradient">{% trans "View Profile" %}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<!-- Top Investors Section -->
+<section class="container my-5 py-5">
+    <h2 class="section-title">{% trans "Top Investors" %}</h2>
+    <div class="row g-4">
+        {% for investor in top_investors %}
+        <div class="col-md-4">
+            <div class="card recent-card">
+                <img src="https://images.unsplash.com/photo-1560179707-f14e90ef3623?auto=format&w=500&q=60" class="card-img-top" alt="{{ investor.company_name }}">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-start mb-3">
+                        <div>
+                            <h5 class="card-title mb-1">{{ investor.company_name }}</h5>
+                            <p class="text-muted small">{{ investor.location }}</p>
+                        </div>
+                        {% if investor.verified %}
+                        <span class="badge bg-gradient">
+                            <i class="fas fa-check-circle"></i>
+                        </span>
+                        {% endif %}
+                    </div>
+                    <p class="card-text">{{ investor.description|truncatewords:20 }}</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="badge bg-gradient">{{ investor.total_investments }} {% trans "investments" %}</span>
+                        <a href="#" class="btn btn-sm btn-gradient">{% trans "View Profile" %}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section">
+    <div class="container text-center">
+        <h2 class="display-5 fw-bold mb-4">{% trans "Ready to Get Started?" %}</h2>
+        <p class="lead mb-5">{% trans "Join Raya today and connect with the right partners for your business growth." %}</p>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+            <a href="{% url 'core:signup' %}?type=startup" class="btn btn-light btn-lg px-5">{% trans "Create Account" %}</a>
+        </div>
+    </div>
+</section>
 {% endblock %} 

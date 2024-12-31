@@ -1,0 +1,26 @@
+{% load i18n %}
+
+<div class="dropdown">
+    <button class="btn btn-link dropdown-toggle" type="button" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+        {% if current_language == 'ar' %}
+            <i class="fas fa-globe"></i> العربية
+        {% else %}
+            <i class="fas fa-globe"></i> English
+        {% endif %}
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="languageDropdown">
+        {% for code, name in languages %}
+            {% if code != current_language %}
+                <li>
+                    <a class="dropdown-item" href="{% url 'core:set_language' %}?lang={{ code }}&next={{ request.path }}">
+                        {% if code == 'ar' %}
+                            العربية
+                        {% else %}
+                            English
+                        {% endif %}
+                    </a>
+                </li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+</div> 

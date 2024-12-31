@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}{% trans "لوحة التحكم" %} - {% trans "راية" %}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card mt-5">
+                <div class="card-body">
+                    <h2 class="text-center mb-4">{% trans "مرحباً بك في راية" %}</h2>
+                    <p class="text-center">{% trans "مرحباً بك في لوحة التحكم الخاصة بك في راية" %}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

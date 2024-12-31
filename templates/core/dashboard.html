@@ -1,146 +1,50 @@
 {% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
 
-{% block title %}Dashboard - Raya{% endblock %}
+{% block title %}{% trans "Dashboard" %} - {% trans "Raya" %}{% endblock %}
 
 {% block content %}
 <div class="container py-5">
     <div class="row">
         <div class="col-12">
-            <h1 class="mb-4">Welcome, {{ request.user.get_full_name|default:request.user.email }}</h1>
-        </div>
-    </div>
-
-    <div class="row">
-        <!-- Profile Overview Card -->
-        <div class="col-md-4 mb-4">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Profile Overview</h5>
-                    <p class="card-text">Email: {{ request.user.email }}</p>
-                    {% if request.user.user_type == 'startup' %}
-                        <p class="card-text">Company: {{ request.user.startup.company_name }}</p>
-                    {% elif request.user.user_type == 'individual' %}
-                        <p class="card-text">Name: {{ request.user.individual.get_full_name }}</p>
-                    {% endif %}
-                    <a href="#" class="btn btn-primary">Edit Profile</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Quick Actions Card -->
-        <div class="col-md-4 mb-4">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Create New</h5>
-                    <div class="list-group">
-                        <a href="{% url 'core:create_deal' %}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
-                            <div>
-                                <i class="bi bi-plus-circle-fill text-primary me-2"></i>
-                                Create New Deal
-                            </div>
-                            <i class="bi bi-chevron-right"></i>
-                        </a>
-                        <a href="{% url 'core:create_startup' %}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
-                            <div>
-                                <i class="bi bi-building-fill-add text-success me-2"></i>
-                                Register Startup
-                            </div>
-                            <i class="bi bi-chevron-right"></i>
-                        </a>
-                        <a href="{% url 'core:create_investor' %}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
-                            <div>
-                                <i class="bi bi-briefcase-fill text-info me-2"></i>
-                                Register Investment Firm
-                            </div>
-                            <i class="bi bi-chevron-right"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Stats Card -->
-        <div class="col-md-4 mb-4">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Your Stats</h5>
-                    <ul class="list-unstyled">
-                        <li>Profile Views: 0</li>
-                        <li>Messages: 0</li>
-                        <li>Connections: 0</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- My Companies Section -->
-    <div class="row mt-4">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-header d-flex justify-content-between align-items-center">
-                    <h5 class="mb-0">My Companies</h5>
-                    <div>
-                        <a href="{% url 'core:create_startup' %}" class="btn btn-sm btn-outline-success me-2">
-                            <i class="bi bi-plus-lg"></i> Add Startup
-                        </a>
-                        <a href="{% url 'core:create_investor' %}" class="btn btn-sm btn-outline-primary">
-                            <i class="bi bi-plus-lg"></i> Add Investment Firm
-                        </a>
-                    </div>
-                </div>
-                <div class="card-body">
-                    {% if user_companies %}
-                        <div class="row">
-                            {% for company in user_companies %}
-                            <div class="col-md-4 mb-3">
-                                <div class="card h-100">
-                                    <div class="card-body">
-                                        <h6 class="card-title">
-                                            {% if company.type == 'startup' %}
-                                                <i class="bi bi-building text-success me-2"></i>
-                                            {% else %}
-                                                <i class="bi bi-briefcase text-primary me-2"></i>
-                                            {% endif %}
-                                            {{ company.name }}
-                                        </h6>
-                                        <p class="card-text small text-muted">
-                                            {{ company.type|title }}
-                                        </p>
-                                        <div class="mt-2">
-                                            <a href="#" class="btn btn-sm btn-outline-secondary">View Details</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            {% endfor %}
-                        </div>
-                    {% else %}
-                        <div class="text-center py-4">
-                            <i class="bi bi-building display-4 text-muted"></i>
-                            <p class="mt-3 text-muted">You haven't registered any companies yet.</p>
-                            <div class="mt-3">
-                                <a href="{% url 'core:create_startup' %}" class="btn btn-success me-2">Register a Startup</a>
-                                <a href="{% url 'core:create_investor' %}" class="btn btn-primary">Register an Investment Firm</a>
-                            </div>
-                        </div>
-                    {% endif %}
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Recent Activity Section -->
-    <div class="row mt-4">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Recent Activity</h5>
+            <h1 class="mb-4">{% trans "Dashboard" %}</h1>
+            
+            {% if user.user_type == 'startup' %}
+                {% if not user.startup %}
                     <div class="alert alert-info">
-                        No recent activity to display.
+                        <h4>{% trans "Welcome to Raya!" %}</h4>
+                        <p>{% trans "Complete your startup profile to start connecting with investors." %}</p>
+                        <a href="{% url 'core:create_startup' %}" class="btn btn-primary">{% trans "Create Startup Profile" %}</a>
                     </div>
-                </div>
-            </div>
+                {% else %}
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h3>{% trans "Your Startup" %}</h3>
+                            <p><strong>{% trans "Company Name" %}:</strong> {{ user.startup.company_name }}</p>
+                            <p><strong>{% trans "Industry" %}:</strong> {{ user.startup.industry }}</p>
+                            <a href="{% url 'core:create_deal' %}" class="btn btn-primary">{% trans "Create New Deal" %}</a>
+                        </div>
+                    </div>
+                {% endif %}
+            {% elif user.user_type == 'investor' %}
+                {% if not user.investor %}
+                    <div class="alert alert-info">
+                        <h4>{% trans "Welcome to Raya!" %}</h4>
+                        <p>{% trans "Complete your investor profile to start discovering opportunities." %}</p>
+                        <a href="{% url 'core:create_investor' %}" class="btn btn-primary">{% trans "Create Investor Profile" %}</a>
+                    </div>
+                {% else %}
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h3>{% trans "Your Investment Firm" %}</h3>
+                            <p><strong>{% trans "Company Name" %}:</strong> {{ user.investor.company_name }}</p>
+                            <p><strong>{% trans "Investment Range" %}:</strong> ${{ user.investor.investment_range_min }} - ${{ user.investor.investment_range_max }}</p>
+                            <a href="{% url 'core:deals_list' %}" class="btn btn-primary">{% trans "Browse Deals" %}</a>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endif %}
         </div>
     </div>
 </div>

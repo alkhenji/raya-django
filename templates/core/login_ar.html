@@ -1,0 +1,161 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}{% trans "تسجيل الدخول" %} - {% trans "راية" %}{% endblock %}
+
+{% block extra_css %}
+<style>
+    .login-header {
+        background: linear-gradient(135deg, #0d6efd 0%, #0dcaf0 100%);
+        color: white;
+        padding: 4rem 0;
+        margin-bottom: 2rem;
+    }
+
+    .login-card {
+        border-radius: 1rem;
+        overflow: hidden;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        padding: 2rem;
+        background: white;
+    }
+
+    .form-group {
+        margin-bottom: 1.5rem;
+        text-align: right;
+    }
+
+    .btn-login {
+        width: 100%;
+        padding: 0.8rem;
+        font-size: 1.1rem;
+    }
+
+    .signup-link {
+        text-align: center;
+        margin-top: 1.5rem;
+    }
+
+    .login-options {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .login-option-card {
+        flex: 1;
+        border: 2px solid #e9ecef;
+        border-radius: 0.5rem;
+        padding: 1.5rem;
+        text-align: center;
+        transition: all 0.2s;
+    }
+
+    .login-option-card i {
+        font-size: 2rem;
+        color: #0d6efd;
+        margin-bottom: 1rem;
+    }
+
+    .login-option-card h5 {
+        margin-bottom: 0.5rem;
+        color: #212529;
+    }
+
+    .login-option-card p {
+        color: #6c757d;
+        font-size: 0.9rem;
+        margin-bottom: 0;
+    }
+
+    .forgot-password {
+        text-align: left;
+        margin-bottom: 1rem;
+    }
+
+    /* RTL Specific Styles */
+    body {
+        direction: rtl;
+    }
+
+    .form-label {
+        text-align: right;
+    }
+
+    .text-lg-end {
+        text-align: left !important;
+    }
+
+    .me-2 {
+        margin-left: 0.5rem !important;
+        margin-right: 0 !important;
+    }
+
+    .ms-2 {
+        margin-right: 0.5rem !important;
+        margin-left: 0 !important;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Header Section -->
+<section class="login-header">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-8">
+                <h1 class="display-4 fw-bold mb-4">{% trans "مرحباً بعودتك" %}</h1>
+                <p class="lead mb-4">{% trans "سجل دخولك للوصول إلى حسابك وإدارة استثماراتك" %}</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="login-card">
+                <div class="login-options">
+                    <div class="login-option-card">
+                        <i class="fas fa-rocket"></i>
+                        <h5>{% trans "شركة ناشئة" %}</h5>
+                        <p>{% trans "الوصول إلى ملف شركتك" %}</p>
+                    </div>
+                    <div class="login-option-card">
+                        <i class="fas fa-chart-line"></i>
+                        <h5>{% trans "مستثمر" %}</h5>
+                        <p>{% trans "إدارة استثماراتك" %}</p>
+                    </div>
+                    <div class="login-option-card">
+                        <i class="fas fa-user"></i>
+                        <h5>{% trans "فرد" %}</h5>
+                        <p>{% trans "استعراض الفرص" %}</p>
+                    </div>
+                </div>
+
+                <form method="post" class="login-form">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    
+                    <div class="forgot-password">
+                        <a href="#" class="text-muted">{% trans "نسيت كلمة المرور؟" %}</a>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-login">
+                        {% trans "تسجيل الدخول" %}
+                    </button>
+                </form>
+
+                <div class="signup-link">
+                    <p class="text-muted">
+                        {% trans "ليس لديك حساب؟" %}
+                        <a href="{% url 'core:signup' %}" class="text-primary">{% trans "إنشاء حساب" %}</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

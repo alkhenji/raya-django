@@ -68,22 +68,22 @@ class InvestorProfile(models.Model):
 
 class StartupProfile(models.Model):
     STAGES = [
-        ('idea', _('Idea Stage')),
-        ('mvp', _('MVP')),
-        ('seed', _('Seed')),
-        ('series_a', _('Series A')),
-        ('series_b', _('Series B')),
-        ('series_c', _('Series C')),
-        ('growth', _('Growth')),
+        ('idea', _('مرحلة الفكرة')),
+        ('mvp', _('النموذج الأولي')),
+        ('seed', _('مرحلة التأسيس')),
+        ('series_a', _('الجولة الأولى')),
+        ('series_b', _('الجولة الثانية')),
+        ('series_c', _('الجولة الثالثة')),
+        ('growth', _('مرحلة النمو')),
     ]
 
     REVENUE_RANGES = [
-        ('pre_revenue', _('Pre-revenue')),
-        ('0-100k', _('$0 - $100k')),
-        ('100k-500k', _('$100k - $500k')),
-        ('500k-1m', _('$500k - $1M')),
-        ('1m-5m', _('$1M - $5M')),
-        ('5m+', _('$5M+')),
+        ('pre_revenue', _('ما قبل الإيرادات')),
+        ('0-100k', _('0 - 100 ألف دولار')),
+        ('100k-500k', _('100 - 500 ألف دولار')),
+        ('500k-1m', _('500 ألف - مليون دولار')),
+        ('1m-5m', _('مليون - 5 مليون دولار')),
+        ('5m+', _('أكثر من 5 مليون دولار')),
     ]
 
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='startup_profile')

@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+
+{% block title %}{% trans "Create Investment Opportunity" %} - {% trans "Raya" %}{% endblock %}
+
+{% block extra_css %}
+<style>
+    .create-deal-section {
+        background: linear-gradient(135deg, #0d6efd 0%, #0dcaf0 100%);
+        color: white;
+        padding: 4rem 0;
+        margin-bottom: 2rem;
+    }
+    
+    .form-card {
+        background: white;
+        border-radius: 1rem;
+        padding: 2rem;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+        margin-top: -4rem;
+    }
+    
+    .btn-gradient {
+        background: linear-gradient(135deg, #0d6efd 0%, #0dcaf0 100%);
+        border: none;
+        color: white;
+        transition: all 0.3s ease;
+    }
+    
+    .btn-gradient:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(13, 110, 253, 0.3);
+    }
+
+    /* RTL specific styles */
+    body {
+        direction: rtl;
+        text-align: right;
+    }
+
+    .form-label {
+        text-align: right;
+    }
+
+    .btn-group {
+        flex-direction: row-reverse;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Header Section -->
+<section class="create-deal-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 text-center">
+                <h1 class="display-4 fw-bold mb-4">{% trans "Create Investment Opportunity" %}</h1>
+                <p class="lead mb-0">{% trans "Share your startup's investment opportunity with potential investors." %}</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Form Section -->
+<section class="container mb-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="form-card">
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-start mt-4">
+                        <button type="submit" class="btn btn-gradient">{% trans "Create Deal" %}</button>
+                        <a href="{% url 'core:deals' %}" class="btn btn-light">{% trans "Cancel" %}</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %} 

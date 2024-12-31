@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Background Elements -->
+    <circle cx="700" cy="100" r="80" fill="#E3F2FD" opacity="0.5"/>
+    <circle cx="100" cy="500" r="60" fill="#E3F2FD" opacity="0.5"/>
+    
+    <!-- Growth Chart -->
+    <path d="M100 400 Q 200 380, 300 350 T 500 280 T 700 200" stroke="#0D6EFD" stroke-width="4" fill="none"/>
+    <circle cx="100" cy="400" r="8" fill="#0D6EFD"/>
+    <circle cx="300" cy="350" r="8" fill="#0D6EFD"/>
+    <circle cx="500" cy="280" r="8" fill="#0D6EFD"/>
+    <circle cx="700" cy="200" r="8" fill="#0D6EFD"/>
+    
+    <!-- Building Blocks (representing startups) -->
+    <rect x="150" y="250" width="100" height="100" rx="10" fill="#0DCAF0" opacity="0.9"/>
+    <rect x="350" y="200" width="100" height="150" rx="10" fill="#0DCAF0" opacity="0.8"/>
+    <rect x="550" y="150" width="100" height="200" rx="10" fill="#0DCAF0" opacity="0.7"/>
+    
+    <!-- Connection Lines -->
+    <path d="M200 300 C 300 300, 400 250, 600 250" stroke="#0D6EFD" stroke-width="2" stroke-dasharray="5,5" fill="none"/>
+    <path d="M250 350 C 350 350, 450 300, 650 300" stroke="#0D6EFD" stroke-width="2" stroke-dasharray="5,5" fill="none"/>
+    
+    <!-- Abstract Shapes -->
+    <circle cx="180" cy="280" r="15" fill="#FFFFFF"/>
+    <circle cx="380" cy="230" r="15" fill="#FFFFFF"/>
+    <circle cx="580" cy="180" r="15" fill="#FFFFFF"/>
+    
+    <!-- Dollar Symbols -->
+    <text x="175" y="286" font-family="Arial" font-size="16" fill="#0D6EFD" text-anchor="middle">$</text>
+    <text x="375" y="236" font-family="Arial" font-size="16" fill="#0D6EFD" text-anchor="middle">$</text>
+    <text x="575" y="186" font-family="Arial" font-size="16" fill="#0D6EFD" text-anchor="middle">$</text>
+    
+    <!-- Decorative Elements -->
+    <path d="M50 150 L 80 180 L 50 210" stroke="#0D6EFD" stroke-width="2" fill="none"/>
+    <path d="M720 390 L 750 420 L 720 450" stroke="#0D6EFD" stroke-width="2" fill="none"/>
+    
+    <!-- Small Dots Grid -->
+    <g opacity="0.3">
+        <circle cx="100" cy="100" r="2" fill="#0D6EFD"/>
+        <circle cx="120" cy="100" r="2" fill="#0D6EFD"/>
+        <circle cx="140" cy="100" r="2" fill="#0D6EFD"/>
+        <circle cx="100" cy="120" r="2" fill="#0D6EFD"/>
+        <circle cx="120" cy="120" r="2" fill="#0D6EFD"/>
+        <circle cx="140" cy="120" r="2" fill="#0D6EFD"/>
+        <circle cx="100" cy="140" r="2" fill="#0D6EFD"/>
+        <circle cx="120" cy="140" r="2" fill="#0D6EFD"/>
+        <circle cx="140" cy="140" r="2" fill="#0D6EFD"/>
+    </g>
+    <g opacity="0.3">
+        <circle cx="660" cy="460" r="2" fill="#0D6EFD"/>
+        <circle cx="680" cy="460" r="2" fill="#0D6EFD"/>
+        <circle cx="700" cy="460" r="2" fill="#0D6EFD"/>
+        <circle cx="660" cy="480" r="2" fill="#0D6EFD"/>
+        <circle cx="680" cy="480" r="2" fill="#0D6EFD"/>
+        <circle cx="700" cy="480" r="2" fill="#0D6EFD"/>
+        <circle cx="660" cy="500" r="2" fill="#0D6EFD"/>
+        <circle cx="680" cy="500" r="2" fill="#0D6EFD"/>
+        <circle cx="700" cy="500" r="2" fill="#0D6EFD"/>
+    </g>
+</svg> 

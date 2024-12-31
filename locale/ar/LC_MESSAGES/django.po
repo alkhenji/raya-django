@@ -1,7 +1,20 @@
-# Arabic translations
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
 msgid ""
 msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-12-31 18:42+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
 
 # General
@@ -9,7 +22,7 @@ msgid "Raya Project"
 msgstr "مشروع ريا"
 
 msgid "Raya"
-msgstr "ريا"
+msgstr "راية"
 
 # Navigation
 msgid "Deals"
@@ -57,6 +70,66 @@ msgstr "شركة تكنولوجيا ناشئة"
 msgid "Looking for $5M investment to scale our AI-powered solution."
 msgstr "نبحث عن استثمار بقيمة 5 مليون دولار لتوسيع حلنا المدعوم بالذكاء الاصطناعي."
 
+msgid "Investment Opportunities"
+msgstr "فرص الاستثمار"
+
+msgid "Discover promising startups seeking investment and growth opportunities."
+msgstr "اكتشف الشركات الناشئة الواعدة التي تبحث عن فرص استثمار ونمو."
+
+msgid "Create Deal"
+msgstr "إنشاء فرصة استثمار"
+
+msgid "Join as Startup"
+msgstr "انضم كشركة ناشئة"
+
+msgid "Progress"
+msgstr "التقدم"
+
+msgid "Learn More"
+msgstr "اعرف المزيد"
+
+msgid "No Active Deals"
+msgstr "لا توجد فرص استثمار نشطة"
+
+msgid "There are currently no active investment opportunities."
+msgstr "لا توجد فرص استثمار نشطة حالياً."
+
+msgid "Create First Deal"
+msgstr "إنشاء أول فرصة استثمار"
+
+msgid "Deals pagination"
+msgstr "ترقيم صفحات الفرص الاستثمارية"
+
+# Pagination
+msgid "Previous"
+msgstr "السابق"
+
+msgid "Next"
+msgstr "التالي"
+
+msgid "Page"
+msgstr "صفحة"
+
+msgid "of"
+msgstr "من"
+
+# Amount
+msgid "Amount Raised"
+msgstr "المبلغ المجمع"
+
+msgid "Target Amount"
+msgstr "المبلغ المستهدف"
+
+# Status
+msgid "Active"
+msgstr "نشط"
+
+msgid "Closed"
+msgstr "مغلق"
+
+msgid "Pending"
+msgstr "قيد الانتظار"
+
 # Startups Page
 msgid "Featured Startups"
 msgstr "الشركات الناشئة المميزة"
@@ -86,9 +159,6 @@ msgstr "شركة رأس مال مغامر في المراحل المبكرة ت�
 # Common Labels
 msgid "Technology"
 msgstr "تكنولوجيا"
-
-msgid "Active"
-msgstr "نشط"
 
 msgid "AI/ML"
 msgstr "ذكاء اصطناعي/تعلم آلي"
@@ -155,4 +225,19 @@ msgid "First Name"
 msgstr "الاسم الأول"
 
 msgid "Last Name"
-msgstr "اسم العائلة" 
+msgstr "اسم العائلة"
+
+msgid "Enter a strong password with at least 8 characters"
+msgstr "أدخل كلمة مرور قوية تتكون من 8 أحرف على الأقل"
+
+msgid "Enter the same password again for verification"
+msgstr "أدخل نفس كلمة المرور مرة أخرى للتحقق"
+
+msgid "We will use this email to contact you"
+msgstr "سنستخدم هذا البريد الإلكتروني للتواصل معك"
+
+msgid "The two password fields did not match"
+msgstr "كلمتا المرور غير متطابقتين"
+
+msgid "Create a new investment opportunity"
+msgstr "تسجيل جولة استثمارية" 
